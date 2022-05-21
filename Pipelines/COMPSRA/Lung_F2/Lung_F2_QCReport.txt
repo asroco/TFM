@@ -1,0 +1,90 @@
+
+#File:/home/tfm20212-01/Software/COMPSRA/Lung_F2.fastq
+#18028815 reads are processed.
+#17987995 reads are trimed with 3'adapter.
+#179 reads are removed because of low quality (<20).
+#0 reads are trimed from 5'end with 0 bases.
+#0 reads are trimed from 3'end with 0 bases.
+#462019 reads are trimed from 5'end bacause of low quality.
+#437125 reads are trimed from 3'end bacause of low quality.
+#179 reads are saved int the file: /home/tfm20212-01/Results/COMPSRA/Lung_F2/Lung_F2_LowQualityRead.fastq.gz
+#56856 reads are saved int the file: /home/tfm20212-01/Results/COMPSRA/Lung_F2/Lung_F2_0to15_FitRead.fastq.gz
+#17971780 reads are saved int the file: /home/tfm20212-01/Results/COMPSRA/Lung_F2/Lung_F2_15to75_FitRead.fastq.gz
+#The length distribution of the trimed reads is listed:
+#Length	Count	Percentage
+0	15	0.00%
+1	391	0.00%
+2	156	0.00%
+3	150	0.00%
+4	191	0.00%
+5	551	0.00%
+6	1582	0.01%
+7	2303	0.01%
+8	3585	0.02%
+9	5586	0.03%
+10	7519	0.04%
+11	8455	0.05%
+12	8298	0.05%
+13	9184	0.05%
+14	8907	0.05%
+15	9214	0.05%
+16	14051	0.08%
+17	14146	0.08%
+18	32402	0.18%
+19	136646	0.76%
+20	1861805	10.33%
+21	1193604	6.62%
+22	3417609	18.96%
+23	1989333	11.03%
+24	1490712	8.27%
+25	205998	1.14%
+26	132807	0.74%
+27	137950	0.77%
+28	204011	1.13%
+29	210978	1.17%
+30	711243	3.95%
+31	433807	2.41%
+32	665922	3.69%
+33	919848	5.10%
+34	920866	5.11%
+35	262147	1.45%
+36	228783	1.27%
+37	171475	0.95%
+38	181305	1.01%
+39	257746	1.43%
+40	693353	3.85%
+41	355715	1.97%
+42	251032	1.39%
+43	122650	0.68%
+44	84842	0.47%
+45	80045	0.44%
+46	104368	0.58%
+47	41787	0.23%
+48	23987	0.13%
+49	22378	0.12%
+50	16300	0.09%
+51	16243	0.09%
+52	49151	0.27%
+53	12097	0.07%
+54	7175	0.04%
+55	3580	0.02%
+56	3873	0.02%
+57	1966	0.01%
+58	2867	0.02%
+59	1460	0.01%
+60	3790	0.02%
+61	25200	0.14%
+62	16393	0.09%
+63	5987	0.03%
+64	2558	0.01%
+65	6021	0.03%
+66	5490	0.03%
+67	2385	0.01%
+68	2282	0.01%
+69	4563	0.03%
+70	11895	0.07%
+71	18148	0.10%
+72	45315	0.25%
+73	53174	0.29%
+74	39996	0.22%
+75	29468	0.16%

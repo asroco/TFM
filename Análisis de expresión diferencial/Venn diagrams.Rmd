@@ -1,0 +1,174 @@
+---
+title: "Venn diagrams. Differential expressed miRNAs"
+author: "Alvaro Santacruz Roco"
+date: '`r format(Sys.Date(),"%e de %B, %Y")`'
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
+header-includes:
+ \usepackage{float}
+ \floatplacement{figure}{H}
+output:
+  html_document:
+    toc: yes
+    toc_depth: '3'
+    df_print: paged
+  pdf_document: 
+    toc: yes
+    toc_depth: '5'
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, 
+                      comment = NA, prompt = TRUE, tidy = FALSE, 
+                      fig.width = 7, fig.height = 7, fig_caption = TRUE,
+                      cache=TRUE, fig.align='center')
+```
+
+```{r librerias, message=FALSE, warning=FALSE, include=FALSE}
+# Librerías y paquetes necesarios para el análisis
+# Mediante if() se indica que se instalen los paquetes si no están instalados
+if (!require(VennDetail))BiocManager::install("VennDetail")
+```
+
+```{r directorios, include = FALSE}
+setwd(".")
+```
+
+```{r filtrado NAs, message=FALSE, warning=FALSE, include=FALSE}
+# Se cargan los datos
+DESEQ2_diff.exp.miRNAs_COMPSRA<- read.csv2("./data/DESEQ2_diff.exp.miRNAs_COMPSRA.csv", sep = ",")
+DESEQ2_diff.exp.miRNAs_miRge<- read.csv2("./data/DESEQ2_diff.exp.miRNAs_miRge.csv", sep = ",")
+DESEQ2_diff.exp.miRNAs_nextflow<- read.csv2("./data/DESEQ2_diff.exp.miRNAs_nextflow.csv", sep = ",")
+DESEQ2_diff.exp.miRNAs_isakova<- read.csv2("./data/DESEQ2_diff.exp.miRNAs_isakova.csv", sep = ",")
+
+# Se filtran los datos con valores NA
+DESEQ2_diff.exp.miRNAs_COMPSRA<- na.omit(DESEQ2_diff.exp.miRNAs_COMPSRA)
+DESEQ2_diff.exp.miRNAs_miRge<- na.omit(DESEQ2_diff.exp.miRNAs_miRge)
+DESEQ2_diff.exp.miRNAs_nextflow<- na.omit(DESEQ2_diff.exp.miRNAs_nextflow)
+DESEQ2_diff.exp.miRNAs_isakova<- na.omit(DESEQ2_diff.exp.miRNAs_isakova)
+
+# Se transforman los valores de las columnas a numérico
+DESEQ2_diff.exp.miRNAs_COMPSRA[,c(2:7)]<- sapply(DESEQ2_diff.exp.miRNAs_COMPSRA[, c(2:7)], as.numeric)
+DESEQ2_diff.exp.miRNAs_miRge[,c(2:7)]<- sapply(DESEQ2_diff.exp.miRNAs_miRge[, c(2:7)], as.numeric)
+DESEQ2_diff.exp.miRNAs_nextflow[,c(2:7)]<- sapply(DESEQ2_diff.exp.miRNAs_nextflow[, c(2:7)], as.numeric)
+DESEQ2_diff.exp.miRNAs_isakova[,c(2:7)]<- sapply(DESEQ2_diff.exp.miRNAs_isakova[, c(2:7)], as.numeric)
+```
+
+# COMPSRA, miRge3.0 y nf-core/smrnaseq
+
+```{r diagrama1, echo = FALSE}
+# Diagrama de venn
+ven<- venndetail(list(COMPSRA = DESEQ2_diff.exp.miRNAs_COMPSRA$X, 
+                      miRge3.0 = DESEQ2_diff.exp.miRNAs_miRge$X,
+                      nfcoresmrnaseq = DESEQ2_diff.exp.miRNAs_nextflow$X))
+plot(ven)
+```
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+# Escritura en fichero
+pdf("figures/vennDiagram_diff.exp.miRNAs_3pipelines.pdf")                     
+plot(ven)
+dev.off()
+```
+
+
+# COMPSRA, miRge3.0 y nf-core/smrnaseq: log2Fc 1 y padj < 0.05
+
+```{r filtrado1, message=FALSE, warning=FALSE, include=FALSE}
+# Se filtran los datos en función de log2FC y padj
+top_DESEQ2_COMPSRA<- subset(DESEQ2_diff.exp.miRNAs_COMPSRA, 
+                                 abs(log2FoldChange)>1 & padj < 0.05, select = X)
+top_DESEQ2_miRge <- subset(DESEQ2_diff.exp.miRNAs_miRge, 
+                                 abs(log2FoldChange)>1 & padj < 0.05, select = X)
+top_DESEQ2_nextflow <- subset(DESEQ2_diff.exp.miRNAs_nextflow, 
+                                 abs(log2FoldChange)>1 & padj < 0.05, select = X)
+```
+
+```{r diagrama2, echo = FALSE}
+# Diagrama de venn
+ven2<- venndetail(list(COMPSRA = top_DESEQ2_COMPSRA$X, 
+                      miRge3.0 = top_DESEQ2_miRge$X, 
+                      nfcoresmrnaseq = top_DESEQ2_nextflow$X))
+
+plot(ven2)
+# Lista de miRNAs compartidos
+list1<- getSet(ven2, subset = c("Shared"))
+knitr::kable(list1[,2], col.names = c("miRNAs"), 
+             caption = "miRNAs diferencialmente expresados *DESEQ2*: 
+             *log2FC* absoluto mayor de 1 y un *p* valor adj menor de 0.05")
+```
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+# Escritura en fichero
+pdf("figures/vennDiagram__top_diff.exp.miRNAs_3pipelines.pdf")                     
+plot(ven2)
+dev.off()
+```
+
+# COMPSRA, miRge3.0 y nf-core/smrnaseq with data from Isakova et al.2020
+
+```{r filtrado2, message=FALSE, warning=FALSE, include=FALSE}
+# Preprocesado de los ids de miRNAs
+DESEQ2_COMPSRA_id<- sub('^([^-]+-[^-]+-[^-]+).*', '\\1', DESEQ2_diff.exp.miRNAs_COMPSRA$X)
+DESEQ2_miRge_id<- sub('^([^-]+-[^-]+-[^-]+).*', '\\1', DESEQ2_diff.exp.miRNAs_miRge$X)
+DESEQ2_nextflow_id<- sub('^([^-]+-[^-]+-[^-]+).*', '\\1', DESEQ2_diff.exp.miRNAs_nextflow$X)
+
+DESEQ2_COMPSRA_id<- unique(DESEQ2_COMPSRA_id)
+DESEQ2_miRge_id<- unique(DESEQ2_miRge_id)
+DESEQ2_nextflow_id<- unique(DESEQ2_nextflow_id)
+```
+
+```{r diagrama3, echo = FALSE}
+# Diagrama de venn
+ven3<- venndetail(list(COMPSRA = DESEQ2_COMPSRA_id, 
+                      miRge3.0 = DESEQ2_miRge_id, 
+                      nfcoresmrnaseq = DESEQ2_nextflow_id,
+                      Isakova_et_al._2020 = DESEQ2_diff.exp.miRNAs_isakova$X))
+plot(ven3)
+```
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+# Escritura en fichero
+pdf("figures/vennDiagram_diff.exp.miRNAs_paper.pdf")                     
+plot(ven3)
+dev.off()
+```
+
+# COMPSRA, miRge3.0 y nf-core/smrnaseq with data from Isakova et al.2020: log2Fc 1 y padj < 0.05
+
+```{r filtrado3, message=FALSE, warning=FALSE, include=FALSE}
+# Preprocesado de los ids de miRNAs
+top_DESEQ2_COMPSRA_id<- sub('^([^-]+-[^-]+-[^-]+).*', '\\1', top_DESEQ2_COMPSRA$X)
+top_DESEQ2_miRge_id<- sub('^([^-]+-[^-]+-[^-]+).*', '\\1', top_DESEQ2_miRge$X)
+top_DESEQ2_nextflow_id<- sub('^([^-]+-[^-]+-[^-]+).*', '\\1', top_DESEQ2_nextflow$X)
+
+top_DESEQ2_COMPSRA_id<- unique(top_DESEQ2_COMPSRA_id)
+top_DESEQ2_miRge_id<- unique(top_DESEQ2_miRge_id)
+top_DESEQ2_nextflow_id<- unique(top_DESEQ2_nextflow_id)
+
+# Se filtran los datos en función de log2FC y padj
+top_DESEQ2_isakova <- subset(DESEQ2_diff.exp.miRNAs_isakova, 
+                                 abs(log2FoldChange)>1 & padj < 0.05, select = X)
+```
+
+```{r diagrama4, echo = FALSE}
+# Diagrama de venn
+ven4<- venndetail(list(COMPSRA = top_DESEQ2_COMPSRA_id, 
+                      miRge3.0 = top_DESEQ2_miRge_id, 
+                      nfcoresmrnaseq = top_DESEQ2_nextflow_id,
+                      Isakova_et_al._2020 = top_DESEQ2_isakova$X))
+plot(ven4)
+# Lista de miRNAs compartidos
+list2<- getSet(ven4, subset = c("Shared"))
+knitr::kable(list2[,2], col.names = c("miRNAs"), 
+             caption = "miRNAs diferencialmente expresados *DESEQ2*: 
+             *log2FC* absoluto mayor de 1 y un *p* valor adj menor de 0.05")
+```
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+# Escritura en fichero
+pdf("figures/vennDiagram_top_diff.exp.miRNAs_paper.pdf")                     
+plot(ven4)
+dev.off()
+```
+

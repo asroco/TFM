@@ -1,0 +1,74 @@
+---
+title: "Scatterplots expression profiles"
+author: "Alvaro Santacruz Roco"
+date: '`r format(Sys.Date(),"%e de %B, %Y")`'
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
+header-includes:
+ \usepackage{float}
+ \floatplacement{figure}{H}
+output:
+  html_document:
+    toc: yes
+    toc_depth: '3'
+    df_print: paged
+  pdf_document: 
+    toc: yes
+    toc_depth: '5'
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, 
+                      comment = NA, prompt = TRUE, tidy = FALSE, 
+                      fig.width = 7, fig.height = 7, fig_caption = TRUE,
+                      cache=TRUE)
+```
+
+```{r librerias, message=FALSE, warning=FALSE, include=FALSE}
+# Librerías y paquetes necesarios para el análisis
+library(dplyr)
+library(ggpubr)
+```
+
+```{r directorios, include = FALSE}
+setwd(".")
+```
+
+# 1. Correlación de las expresiones
+
+```{r}
+# Se cargan los datos
+logcounts_norm_COMPSRA<- read.csv2("./data/logcounts_norm_COMPSRA.csv", sep = ",")
+logcounts_norm_miRge<- read.csv2("./data/logcounts_norm_miRge.csv", sep = ",")
+logcounts_norm_nextflow<- read.csv2("./data/logcounts_norm_nextflow.csv", sep = ",")
+logcounts_norm_isakova<- read.csv2("./data/logcounts_norm_isakova.csv", sep = ",")
+# Preprocesado de los datos. Filtrado de miRNAs en común
+library(dplyr)
+logcounts_norm_COMPSRA_miRge<- inner_join(logcounts_norm_COMPSRA, logcounts_norm_miRge, by = c("X"))
+logcounts_norm_COMPSRA_nextflow<- inner_join(logcounts_norm_COMPSRA, logcounts_norm_nextflow, by = c("X"))
+logcounts_norm_miRge_nextflow<- inner_join(logcounts_norm_miRge, logcounts_norm_nextflow, by = c("X"))
+# Se transforman los valores de las columnas a numérico
+logcounts_norm_COMPSRA_miRge[,c(2:13)]<- sapply(logcounts_norm_COMPSRA_miRge[, c(2:13)], as.numeric)
+logcounts_norm_COMPSRA_nextflow[,c(2:13)]<- sapply(logcounts_norm_COMPSRA_nextflow[, c(2:13)], as.numeric)
+logcounts_norm_miRge_nextflow[,c(2:13)]<- sapply(logcounts_norm_miRge_nextflow[, c(2:13)], as.numeric)
+```
+
+```{r}
+# Ejecutar para cada una de las comparaciones sustituyendo XXXX por los valores correpondientes
+correlation<- ggscatter(logcounts_norm_XXXXX, x = "Lung_XX.x", y = "Lung_XX.y", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.coef.size = 9,  cor.method = "pearson",
+          xlab = "logcounts_norm_XXXX", ylab = "logcounts_XXXX")
+# Escritura en fichero
+pdf("figures/correlations/miRge_nfcore_Lung_XX.pdf")
+plot(correlation)
+dev.off()
+```
+
+
+
+
+
+
+
+

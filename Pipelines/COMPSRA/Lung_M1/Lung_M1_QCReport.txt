@@ -1,0 +1,90 @@
+
+#File:/home/tfm20212-01/Software/COMPSRA/Lung_M1.fastq
+#25545228 reads are processed.
+#25506217 reads are trimed with 3'adapter.
+#573 reads are removed because of low quality (<20).
+#0 reads are trimed from 5'end with 0 bases.
+#0 reads are trimed from 3'end with 0 bases.
+#427013 reads are trimed from 5'end bacause of low quality.
+#417006 reads are trimed from 3'end bacause of low quality.
+#573 reads are saved int the file: /home/tfm20212-01/Results/COMPSRA/Lung_M1/Lung_M1_LowQualityRead.fastq.gz
+#26456 reads are saved int the file: /home/tfm20212-01/Results/COMPSRA/Lung_M1/Lung_M1_0to15_FitRead.fastq.gz
+#25518199 reads are saved int the file: /home/tfm20212-01/Results/COMPSRA/Lung_M1/Lung_M1_15to75_FitRead.fastq.gz
+#The length distribution of the trimed reads is listed:
+#Length	Count	Percentage
+0	6	0.00%
+1	243	0.00%
+2	104	0.00%
+3	105	0.00%
+4	188	0.00%
+5	389	0.00%
+6	636	0.00%
+7	1227	0.00%
+8	1614	0.01%
+9	2437	0.01%
+10	2811	0.01%
+11	3109	0.01%
+12	3406	0.01%
+13	4049	0.02%
+14	6139	0.02%
+15	6270	0.02%
+16	14583	0.06%
+17	15273	0.06%
+18	46645	0.18%
+19	230572	0.90%
+20	2981656	11.67%
+21	1752049	6.86%
+22	5884830	23.04%
+23	2507312	9.82%
+24	1355326	5.31%
+25	170774	0.67%
+26	90158	0.35%
+27	100092	0.39%
+28	132211	0.52%
+29	102189	0.40%
+30	261573	1.02%
+31	141929	0.56%
+32	191155	0.75%
+33	616060	2.41%
+34	180583	0.71%
+35	65791	0.26%
+36	52131	0.20%
+37	41192	0.16%
+38	62897	0.25%
+39	73959	0.29%
+40	259573	1.02%
+41	77350	0.30%
+42	61196	0.24%
+43	27818	0.11%
+44	16239	0.06%
+45	12497	0.05%
+46	15377	0.06%
+47	6645	0.03%
+48	4546	0.02%
+49	4688	0.02%
+50	6437	0.03%
+51	13414	0.05%
+52	55068	0.22%
+53	13791	0.05%
+54	16499	0.06%
+55	5763	0.02%
+56	7639	0.03%
+57	8969	0.04%
+58	14635	0.06%
+59	12417	0.05%
+60	39923	0.16%
+61	457394	1.79%
+62	320709	1.26%
+63	179865	0.70%
+64	109973	0.43%
+65	295155	1.16%
+66	234076	0.92%
+67	136632	0.53%
+68	82694	0.32%
+69	145816	0.57%
+70	1058394	4.14%
+71	848679	3.32%
+72	1550287	6.07%
+73	1670616	6.54%
+74	634987	2.49%
+75	35794	0.14%

@@ -1,0 +1,35 @@
+
+{miRNA}:
+[miRBase]
+Total Annotation Items: 3232
+Annotated Items (covered by least one read): 1481
+Unannotated Items: 1751
+Reads Support the Annotation: 25037018
+
+{tRNA}:
+[GtRNAdb]
+Total Annotation Items: 471
+Annotated Items (covered by least one read): 418
+Unannotated Items: 53
+Reads Support the Annotation: 19533899
+
+{snoRNA}:
+[GEN_snoRNA]
+Total Annotation Items: 4605
+Annotated Items (covered by least one read): 1458
+Unannotated Items: 3147
+Reads Support the Annotation: 29885496
+
+{snRNA}:
+[GEN_snRNA]
+Total Annotation Items: 4170
+Annotated Items (covered by least one read): 636
+Unannotated Items: 3534
+Reads Support the Annotation: 100236
+
+{circRNA}:
+[circRNA]
+Total Annotation Items: 16431
+Annotated Items (covered by least one read): 11575
+Unannotated Items: 4856
+Reads Support the Annotation: 2056392

@@ -1,0 +1,7 @@
+Sample	Filename	File type	Encoding	Total Sequences	Sequences flagged as poor quality	Sequence length	%GC	total_deduplicated_percentage	avg_sequence_length	basic_statistics	per_base_sequence_quality	per_sequence_quality_scores	per_base_sequence_content	per_sequence_gc_content	per_base_n_content	sequence_length_distribution	sequence_duplication_levels	overrepresented_sequences	adapter_content
+Lung_F1	Lung_F1.fastq	Conventional base calls	Sanger / Illumina 1.9	20739536.0	0.0	15-75	46.0	6.7030836209090605	28.063197749457846	pass	pass	pass	fail	fail	pass	warn	fail	fail	pass
+Lung_F2	Lung_F2.fastq	Conventional base calls	Sanger / Illumina 1.9	17931049.0	0.0	15-75	47.0	7.352632336919951	27.57597851637124	pass	pass	pass	fail	fail	pass	warn	fail	fail	pass
+Lung_F3	Lung_F3.fastq	Conventional base calls	Sanger / Illumina 1.9	20137854.0	0.0	15-75	48.0	3.044538315424237	30.08227172567643	pass	pass	pass	fail	fail	pass	warn	fail	fail	pass
+Lung_M1	Lung_M1.fastq	Conventional base calls	Sanger / Illumina 1.9	25479710.0	0.0	15-75	45.0	2.362469126285236	37.6366982198777	pass	pass	pass	fail	fail	pass	warn	fail	fail	pass
+Lung_M2	Lung_M2.fastq	Conventional base calls	Sanger / Illumina 1.9	28669675.0	0.0	15-75	46.0	2.837767155721077	37.44885820993785	pass	pass	pass	fail	fail	pass	warn	fail	fail	pass
+Lung_M3	Lung_M3.fastq	Conventional base calls	Sanger / Illumina 1.9	34230890.0	0.0	15-75	45.0	4.336013716613082	36.24667509375304	pass	pass	pass	fail	fail	pass	warn	fail	fail	pass

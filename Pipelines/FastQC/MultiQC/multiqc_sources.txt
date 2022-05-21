@@ -1,0 +1,7 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	Lung_M1	/home/tfm20212-01/Samples/FastQCresults/Lung_M1_fastqc.zip
+FastQC	all_sections	Lung_F1	/home/tfm20212-01/Samples/FastQCresults/Lung_F1_fastqc.zip
+FastQC	all_sections	Lung_M2	/home/tfm20212-01/Samples/FastQCresults/Lung_M2_fastqc.zip
+FastQC	all_sections	Lung_M3	/home/tfm20212-01/Samples/FastQCresults/Lung_M3_fastqc.zip
+FastQC	all_sections	Lung_F3	/home/tfm20212-01/Samples/FastQCresults/Lung_F3_fastqc.zip
+FastQC	all_sections	Lung_F2	/home/tfm20212-01/Samples/FastQCresults/Lung_F2_fastqc.zip

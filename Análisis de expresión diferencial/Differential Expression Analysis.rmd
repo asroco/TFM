@@ -1,0 +1,307 @@
+---
+title: "Differential Expression Analyisis with DESEQ2."
+author: "Alvaro Santacruz Roco"
+date: '`r format(Sys.Date(),"%e de %B, %Y")`'
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
+header-includes:
+ \usepackage{float}
+ \floatplacement{figure}{H}
+output:
+  html_document:
+    toc: yes
+    toc_depth: '3'
+    df_print: paged
+  pdf_document: 
+    toc: yes
+    toc_depth: '5'
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, 
+                      comment = NA, prompt = TRUE, tidy = FALSE, 
+                      fig.width = 7, fig.height = 7, fig_caption = TRUE, 
+                      fig.align='center')
+```
+
+Para el análisis de este estudio se ha utilizado **R statistical software** (https://cran.r-project.org/index.html). Se ha utilizado la versión más reciente publicada (R 4.2.0). Para poder realizar el análisis es necesario instalar una serie de librerías, algunas estándar de CRAN y otras más específicas para un análisis de datos de secuenciación que son parte del proyecto Bioconductor (versión 3.6).
+
+```{r librerias, message=FALSE, warning=FALSE}
+# Librerías y paquetes necesarios para el análisis
+# Mediante if() se indica que se instalen los paquetes si no están instalados
+if (!require(Rsubread)) BiocManager::install("Rsubread")
+if (!require(edgeR))BiocManager::install("edgeR")
+if (!require(limma))BiocManager::install("limma")
+if (!require(DESeq2))BiocManager::install("DESeq2")
+if (!require(EnhancedVolcano))BiocManager::install("EnhancedVolcano")
+if (!require(pheatmap))BiocManager::install("pheatmap")
+```
+
+```{r directorios, include = FALSE}
+# Creación de directorios
+setwd(".")
+dir.create("data")
+dir.create("figures")
+dir.create("results")
+```
+
+# 1. Selección de los datos
+
+```{r lectura, , message=FALSE, warning=FALSE, include=FALSE}
+# Modificar en función del formato del fichero de contajes
+# Se carga el archivo con los datos de contaje
+seqdata<- read.delim("./data/Lung_miRNAcounts.txt" , stringsAsFactors = FALSE, sep = "\t")
+
+# Se carga el archivo sampleInfo con la información de todas las muestras y sus grupos
+# A partir de este archivo se selecciona la información de las muestras seleccionadas
+sampleInfo<- read.csv2("./data/SampleInfo.csv", header = TRUE, sep = ";") 
+
+# Se guarda los valores de contaje de todas las muestras en el objeto muestras_analisis
+muestras_analisis<- seqdata[,2:7]
+
+# Se guardan los identificadores de los miRNAs
+rownames(muestras_analisis) <- seqdata$ID
+
+# Se comprueba que el orden de las muestras en los objetos muestras_analisis y 
+# muestrasinfo_analisis es el mismo
+all.equal(colnames(muestras_analisis), sampleInfo$SampleName)
+
+```
+
+Las muestras seleccionadas para el análisis son las siguientes:
+
+```{r tabla_muestras, message=FALSE, warning=FALSE, echo=FALSE}
+# Tabla de muestras seleccionadas
+knitr::kable(sampleInfo,
+             caption = 'Muestras seleccionadas para el análisis')
+```
+
+# 2. Preprocesado de los datos
+## 2.1. Filtraje de *miRNAs* poco expresados.
+
+En primer lugar es necesario realizar un filtraje de aquellos *miRNAs* que se encuentran poco expresados de acuerdo con los valores de contaje. Estos *miRNAs* son de poca utilidad a la hora de estimar estadísticamente la expresión diferencial de *miRNAs* e influyen en la tasa de falsos positivos que se puede obtener en el análisis.
+
+Para poder realizar el filtraje, los valores de contaje se estandarizan en función del tamaño de la librería de la muestra y así evitar que se atribuyan valores muy bajos a algunos contajes debido a diferencias entre muestras en los tamaños de la librería. Los valores de contaje se expresan como *counts per million* (CPMs).
+
+Para realizar el filtraje de los datos, se eliminan todos aquellos en los que o las muestras de macho o las muestras de hembra, en alguna de sus tres réplicas tenga un valor de contaje igual a 0, de acuerdo con los valores CPM calculados.
+
+```{r CPM_valores, message=FALSE, warning=FALSE, include=FALSE}
+library(edgeR)
+# Se obtienen los valores cpm
+muestras_analisis_CPM <- cpm(muestras_analisis)
+
+# Se establece el umbral de corte
+# El resultado es una matriz booleana con valores TRUEs y FALSE
+thresh <- muestras_analisis_CPM > 0
+
+# Se eliminan todos aquellos transcritos del objeto muestras_analisis que no 
+# tienen un mínimo de tres contajes distintos de cero en cada uno de los dos grupos
+keep <- rowSums(thresh[,1:3]) >= 3 & rowSums(thresh[,4:6]) >= 3
+muestras_analisis_keep <- muestras_analisis[keep,]
+```
+
+## 2.2. Uso de clases específicas para manejar los datos.
+
+Finalmente, para trabajar de forma más eficiente, los valores de contaje filtrados son almacenados en un objeto de la clase S4 de tipo DGEList.
+
+```{r dgeObj, message=FALSE, warning=FALSE, include=FALSE}
+# Se crea un objeto de clase S4 de tipo DGEList
+dgeObj <- DGEList(muestras_analisis_keep)
+```
+
+# 3. Exploración y normalización de los datos
+## 3.1. Boxplot de los recuentos no normalizados.
+
+Para realizar una primera exploración de los datos del análisis se representa su distribución mediante boxplot. Como los valores de contaje no siguen una distribución normal, en primer lugar es necesario realizar una transformación de los datos utilizando logaritmos. Los valores de contaje son transformados en recuentos *log2* por millón.
+
+```{r boxplotraw, message=FALSE, warning=FALSE, include=FALSE}
+# Transformación de los recuentos como log2 por millón
+logcounts <- cpm(dgeObj,log=TRUE)
+
+# Representación de la distribución de los recuentos log2 por millón
+# Se indica el valor de la mediana mediante (abline)
+pdf("figures/boxplot_Raw.pdf")
+boxplot(logcounts, ylab="Log2-CPM",las=2, xlab="", 
+        cex.axis=1.2, main="Boxplot de recuentos (no-normalizados)")
+abline(h=median(logcounts), col="blue")
+dev.off()
+```
+
+```{r boxplotraw2, message=FALSE, warning=FALSE, echo=FALSE}
+boxplot(logcounts, ylab="Log2-CPM",las=2, xlab="", 
+        cex.axis=1.2, main="Boxplot de recuentos (no-normalizados)")
+abline(h=median(logcounts), col="blue")
+```
+
+## 3.2. Normalización.
+
+Para normalizar los valores de contaje contenidos en el objeto dgeObj se utiliza la función calcNormFactors. La normalización de los valores permite eliminar los sesgos que puedan existir entre las librerías de cada una de las muestras del análisis. Una vez se obtienen los valores normalizados, la distribución de estos se representa gráficamente mediante boxplot. Nuevamente es necesario transformar los valores mediante logaritmos de la misma forma que se ha indicado anteriormente.
+
+```{r normalizar, message=FALSE, warning=FALSE, include=FALSE}
+# Se normalizan los valores de contaje en el objeto dgeObj
+dgeObj_norm <- calcNormFactors(dgeObj)
+
+# Transformación de los recuentos como log2 por millón
+logcounts_norm <- cpm(dgeObj_norm,log=TRUE)
+
+# Representación de la distribución de los recuentos log2 por millón
+# Se indica el valor de la mediana mediante (abline)
+pdf("figures/boxplot_norm.pdf")
+boxplot(logcounts_norm, ylab="Log2-CPM",las=2, xlab="", 
+        cex.axis=1.2, main="Boxplot de recuentos (normalizados)")
+abline(h=median(logcounts_norm), col="blue")
+dev.off()
+```
+
+```{r normalizar2, message=FALSE, warning=FALSE, echo=FALSE}
+boxplot(logcounts_norm, ylab="Log2-CPM",las=2, xlab="", 
+        cex.axis=1.2, main="Boxplot de recuentos (normalizados)")
+abline(h=median(logcounts_norm), col="blue")
+```
+
+## 3.3. Análisis no supervisado de similaridad entre las muestras.
+
+Para comprobar la similaridad entre muestras y que estas se agrupan correctamente de acuerdo a los grupos establecidos se lleva a cabo un análisis no supervisado de similaridad a partir del cálculo de la matriz de distancias. Esta matriz se calcula mediante la comparación dos a dos de todas las muestras a partir de los valores *log2* por millón normalizados de los recuentos.
+
+La matriz de distancias calculada se visualiza mediante un heatmap. También se realiza un agrupamiento jerárquico a partir de la matriz de distancias y se representa gráficamente.
+
+```{r graf_distancias, message=FALSE, warning=FALSE, include = FALSE}
+# Se calcula la matriz de distancias
+sampleDists <- dist(t(logcounts_norm))
+
+library(factoextra)
+# Se representa mediante heatmap la matriz de distancias
+pdf("figures/fviz_dist.pdf")
+fviz_dist(sampleDists)
+dev.off()
+
+# Se representa el clúster jerárquico a partir de la matriz de distancias
+pdf("figures/cluster_distancias.pdf")
+plot(hclust(sampleDists),labels = colnames(logcounts_norm),
+     main = "Dendograma de distancias", cex=2)
+dev.off()
+```
+
+```{r graf_distancias2, message=FALSE, warning=FALSE, echo=FALSE}
+fviz_dist(sampleDists)
+plot(hclust(sampleDists),labels = colnames(logcounts_norm),
+     main = "Dendograma de distancias", cex=2)
+```
+
+## 3.4. Visualización en dimensión reducida.
+
+Se lleva a cabo también un análisis en dimensión reducida a partir del cálculo de la matriz de distancias.
+
+```{r plotDMS, message=FALSE, warning=FALSE, include=FALSE}
+# Indicamos el factor a partir del cual realizar el análisis
+sampleInfo$Group <- factor (sampleInfo$Group)
+col.Group <- c("blue","red")[sampleInfo$Group]
+data.frame(sampleInfo$Group,col.Group)
+
+# Representación en dimensión reducida
+pdf("figures/plotMDS.pdf")
+plotMDS(logcounts_norm,col=col.Group, main="Visualización en dimensión reducida", 
+        cex=1.5)
+dev.off()
+```
+
+```{r plotDMS2, message=FALSE, warning=FALSE, echo=FALSE}
+plotMDS(logcounts_norm,col=col.Group, main="Visualización en dimensión reducida", 
+        cex=1.5)
+```
+
+# 4. Análisis de expresión diferencial con *DESEQ2*
+
+## 4.1. Creación del objeto DESeqDataSet y análisis.
+
+Para realizar el análisis de expresión diferencial mediante *DESEQ2* se crea un objeto de tipo DESeqDataSet a partir de los valores de contaje de los transcritos filtrados, con la información sobre los grupos de muestras (macho y hembra).
+
+```{r DESEQ2, message=FALSE, warning=FALSE, include=FALSE}
+library(DESeq2)
+# Se crea el objeto de tipo DESeqDataSet
+dds <- DESeqDataSetFromMatrix(countData = dgeObj,
+                              colData = sampleInfo,
+                              design = ~ Group)
+```
+
+Este análisis se realiza mediante la función DESeq(), indicando previemente mediante la función relevel() el grupo de referencia a la hora de realizar la comparación (en este caso el grupo referencia es "Hembra"). Finalmente, para facilitar posteriores análisis, la información se guarda en forma de fichero *.csv*.
+
+```{r DESEQ2_res, message=FALSE, warning=FALSE, include=FALSE}
+# Se realiza el análisis de expresión diferencial
+dds$Group <- relevel(dds$Group, ref = "Female")
+dds2<- DESeq(dds)
+res_DESEQ2<- results(dds2)
+res_DESEQ2
+
+# Se guarda el resultado en un data.frame
+DESEQ2_diff.exp.miRNAs<- as.data.frame(res_DESEQ2)
+# Escritura de archivos
+write.csv(DESEQ2_diff.exp.miRNAs, file="./results/DESEQ2_diff.exp.miRNAs.csv")
+```
+
+## 4.2. Selección de *miRNAs* y visualización del perfil de expresión.
+
+La lista de *miRNAs* diferencialmente expresados se visualiza de manera gráfica mediante Volcano plot. Por defecto, en la gráfica aparecen indicados en rojo aquellos *miRNAs* con un *logFC* absoluto mayor de 1 y un *p* valor menor de 0.05.
+
+```{r filtrado NAs, message=FALSE, warning=FALSE, include=FALSE}
+# Se filtran los datos con valores NA
+DESEQ2_diff.exp.miRNAs<- na.omit(DESEQ2_diff.exp.miRNAs)
+```
+
+```{r volcano_DESEQ2, message=FALSE, warning=FALSE, include=FALSE}
+# Representación mediante volcano de miRNAs diferencialmente expresados
+# Escritura de ficheros
+pdf("figures/Volcano_DESEQ2.pdf")
+EnhancedVolcano(DESEQ2_diff.exp.miRNAs,
+              lab = rownames(DESEQ2_diff.exp.miRNAs), 
+              x = 'log2FoldChange', y = 'pvalue', pCutoff = 0.05, FCcutoff = 1)
+dev.off()
+```
+
+```{r volcano_DESEQ2_2, message=FALSE, warning=FALSE, echo=FALSE}
+EnhancedVolcano(DESEQ2_diff.exp.miRNAs,
+              lab = rownames(DESEQ2_diff.exp.miRNAs), 
+              x = 'log2FoldChange', y = 'pvalue', pCutoff = 0.05, FCcutoff = 1)
+```
+
+Se selecciona un subconjunto de *miRNAs* diferencialmente expresados de acuerdo con un umbral de *log2FC* y *padj* a partir del conjunto de *miRNAs* diferencialmente expresados. En concreto, se seleccionan aquellos con un *log2FC* absoluto mayor de 1 y un *padj* menor de 0.05.
+
+```{r seleccion_DESEQ2, message=FALSE, warning=FALSE, echo=FALSE}
+Upregulated<- sum(DESEQ2_diff.exp.miRNAs$log2FoldChange > 1 & 
+                    DESEQ2_diff.exp.miRNAs$padj < 0.05)
+Downregulated<- sum(DESEQ2_diff.exp.miRNAs$log2FoldChange < -1 & 
+                      DESEQ2_diff.exp.miRNAs$padj < 0.05)
+Total<- nrow(DESEQ2_diff.exp.miRNAs)
+No.sig<- Total-(Upregulated+Downregulated)
+tabla_DESEQ2<- data.frame(Total, Upregulated, Downregulated, No.sig)
+knitr::kable(tabla_DESEQ2, 
+             caption = "miRNAs diferencialmente expresados *DESEQ2*: 
+             *log2FC* absoluto mayor de 1 y un *p* valor adj menor de 0.05")
+```
+
+El perfil de expresión del conjunto de *miRNAs* seleccionados de acuerdo a un *log2FC* absoluto mayor de 1 y un *padj* menor de 0.05 se visualiza a través de un heatmap.
+
+```{r heatmap_DESEQ2, message=FALSE, warning=FALSE, include=FALSE}
+library(pheatmap)
+# Se seleccionan los miRNAs de acuerdo a los valores umbral
+topmiRNAs_DESEQ2 <- rownames(subset(DESEQ2_diff.exp.miRNAs, 
+                                   (abs(log2FoldChange)> 1) & (pvalue < 0.05)))
+# Se selecciona la información de los miRNAs para incluir en el heatmap
+mat_DESEQ2  <- logcounts_norm[topmiRNAs_DESEQ2, sampleInfo$SampleName]
+mat_DESEQ2  <- mat_DESEQ2 - rowMeans(mat_DESEQ2)
+# Se crea el heatmap
+pheatmap(mat_DESEQ2, 
+         main = "miRNAs expresados diferencialmente \n p adj < 0,05; log2FC > 1", 
+         filename = "figures/Heatmap_DESEQ2.pdf")
+```
+
+```{r heatmap_DESEQ2_2, message=FALSE, warning=FALSE, echo=FALSE}
+topmiRNAs_DESEQ2 <- rownames(subset(DESEQ2_diff.exp.miRNAs, 
+                                   (abs(log2FoldChange)> 1) & (pvalue < 0.05)))
+mat_DESEQ2  <- logcounts_norm[topmiRNAs_DESEQ2, sampleInfo$SampleName]
+mat_DESEQ2  <- mat_DESEQ2 - rowMeans(mat_DESEQ2)
+pheatmap(mat_DESEQ2, 
+         main = "miRNAs expresados diferencialmente \n p adj < 0,05; log2FC > 1")
+```
+
+
