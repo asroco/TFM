@@ -50,17 +50,17 @@ dir.create("results")
 ```{r lectura, , message=FALSE, warning=FALSE, include=FALSE}
 # Modificar en función del formato del fichero de contajes
 # Se carga el archivo con los datos de contaje
-seqdata<- read.delim("./data/Lung_miRNAcounts.txt" , stringsAsFactors = FALSE, sep = "\t")
+seqdata<- read.delim("./path" , stringsAsFactors = FALSE, sep = ",")
 
 # Se carga el archivo sampleInfo con la información de todas las muestras y sus grupos
 # A partir de este archivo se selecciona la información de las muestras seleccionadas
 sampleInfo<- read.csv2("./data/SampleInfo.csv", header = TRUE, sep = ";") 
 
 # Se guarda los valores de contaje de todas las muestras en el objeto muestras_analisis
-muestras_analisis<- seqdata[,2:7]
+muestras_analisis<- seqdata[,-1]
 
 # Se guardan los identificadores de los miRNAs
-rownames(muestras_analisis) <- seqdata$ID
+rownames(muestras_analisis) <- seqdata$X
 
 # Se comprueba que el orden de las muestras en los objetos muestras_analisis y 
 # muestrasinfo_analisis es el mismo
