@@ -1,0 +1,2 @@
+Lung_F3_*.mature	Lung_F2_*.mature	Lung_M2_*.mature	Lung_F1_*.mature	Lung_M3_*.mature	Lung_M1_*.mature
+*	16243014	10189895	14909807	12515618	17077551	12868672

@@ -1,0 +1,75 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+16	1a/a7034a	2192418	output_documentation	CACHED	0	2022-05-09 19:43:21.998	3.7s	405ms	86.2%	18.7 MB	25.6 MB	3.9 MB	799.3 KB
+5	3c/6a197a	2186249	fastqc (Lung_F2_*.fastq)	CACHED	0	2022-05-09 19:43:16.322	48.9s	45.4s	111.8%	406.8 MB	3.5 GB	1.7 GB	2.5 MB
+14	43/9a42c6	2468157	trim_galore (Lung_M3_*.fastq)	CACHED	0	2022-05-10 06:45:07.337	7m 25s	7m 21s	133.0%	264 MB	3.4 GB	11.5 GB	7.7 GB
+15	8c/d221a5	2252083	mirtrace ([Lung_M1_*.fastq, Lung_F1_*.fastq, Lung_F2_*.fastq, Lung_M2_*.fastq, Lung_F3_*.fastq, Lung_M3_*.fastq])	CACHED	0	2022-05-09 19:47:33.153	5m 24s	5m 22s	380.6%	2.9 GB	47.9 GB	15.2 GB	650.6 MB
+2	07/40212a	2186260	make_bowtie_index	CACHED	0	2022-05-09 19:43:16.355	5.6s	2.1s	112.2%	99.4 MB	897.3 MB	14.1 MB	18.7 MB
+17	32/18584a	2554496	insertsize (Lung_M3_*_trimmed.fq.gz)	CACHED	0	2022-05-10 06:52:32.983	1m 5s	1m 2s	100.8%	9.2 MB	24.4 MB	4.1 GB	3.6 GB
+20	89/6aa058	2602759	collapse (Lung_M3_*_trimmed.fq.gz)	CACHED	0	2022-05-10 07:09:27.166	7m 40s	7m 38s	100.3%	1016.2 MB	6 GB	450.8 MB	107.3 MB
+18	d0/311f9b	2607057	bowtie_miRBase_mature (Lung_M3_*_trimmed.fq.gz)	CACHED	0	2022-05-10 07:11:42.491	4m 41s	4m 39s	452.8%	24.9 MB	12.4 GB	10.4 GB	7.5 GB
+22	a8/b13da1	2671282	bowtie_miRBase_hairpin_collapsed (Lung_M3_*.fastq)	CACHED	0	2022-05-10 07:29:00.542	14.5s	12.1s	586.0%	26.4 MB	12.4 GB	251.6 MB	167.1 MB
+24	72/61b29b	2668223	bowtie_miRBase_hairpin (Lung_M3_*.mature_unmapped.fq.gz)	CACHED	0	2022-05-10 07:28:26.831	3m 44s	3m 42s	430.4%	26.4 MB	12.4 GB	6.9 GB	5.1 GB
+25	55/e17d9f	2688747	mirna_post_alignment (Lung_M3_*.hairpin.bam)	CACHED	0	2022-05-10 07:33:18.473	1m 20s	1m 17s	95.2%	1009.1 MB	1.1 GB	1.4 GB	576.2 MB
+7	0a/228fb7	2720185	fastqc (Lung_F3_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.872	52.2s	48.5s	110.2%	424.7 MB	3.5 GB	2 GB	2.8 MB
+1	b7/3d2c0c	2739723	get_software_versions	COMPLETED	0	2022-05-10 08:38:15.125	4.7s	2s	399.0%	21.3 MB	28 MB	27.2 MB	13.4 KB
+4	20/9813aa	2720164	fastqc (Lung_F1_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.832	1m 5s	1m 2s	102.6%	401.8 MB	3.6 GB	1.9 GB	2.5 MB
+3	06/0a37da	2720196	fastqc (Lung_M1_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.898	1m 19s	1m 16s	105.7%	411.3 MB	3.8 GB	2.8 GB	2.7 MB
+6	08/083da8	2720149	fastqc (Lung_M2_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.814	1m 28s	1m 25s	105.3%	445.3 MB	3.6 GB	3.2 GB	2.7 MB
+8	79/b5bea5	2720171	fastqc (Lung_M3_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.845	1m 39s	1m 36s	104.8%	411 MB	3.7 GB	3.7 GB	2.7 MB
+12	c4/fd6846	2720189	trim_galore (Lung_F2_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.885	3m 43s	3m 40s	138.7%	262.7 MB	3.4 GB	5.1 GB	3.4 GB
+23	dc/589fcb	2752729	mirna_post_alignment (Lung_M3_*.mature.bam)	COMPLETED	0	2022-05-10 08:39:02.193	2m 18s	2m 16s	95.1%	1013.2 MB	1.1 GB	2 GB	808.6 MB
+13	18/4559d2	2720145	trim_galore (Lung_F3_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.796	4m 7s	4m 3s	132.3%	252.9 MB	3.3 GB	6 GB	4.1 GB
+29	1a/2a298b	2773720	insertsize (Lung_F2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:41:07.361	35.2s	32.7s	101.5%	9.1 MB	24.4 MB	1.8 GB	1.6 GB
+33	b5/32e1c3	2779993	insertsize (Lung_F3_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:41:30.590	38s	35.7s	101.2%	9.4 MB	24.4 MB	2.1 GB	1.9 GB
+10	a7/defb27	2744271	trim_galore (Lung_F1_*.fastq)	COMPLETED	0	2022-05-10 08:38:28.126	4m 6s	4m 4s	142.6%	263.5 MB	3.3 GB	6 GB	4 GB
+9	34/3a12be	2720176	trim_galore (Lung_M1_*.fastq)	COMPLETED	0	2022-05-10 08:37:22.854	5m 27s	5m 24s	135.0%	235.3 MB	3.4 GB	8.7 GB	5.9 GB
+39	21/36c1ff	2791593	insertsize (Lung_F1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:42:50.305	40.3s	37.7s	100.6%	9.2 MB	24.4 MB	2.2 GB	1.9 GB
+42	c9/2f1e2e	2796607	insertsize (Lung_M1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:43:30.629	51.7s	49s	100.7%	9.2 MB	24.4 MB	3.1 GB	2.8 GB
+11	b5/95c045	2741535	trim_galore (Lung_M2_*.fastq)	COMPLETED	0	2022-05-10 08:38:19.800	6m 10s	6m 8s	134.3%	331.6 MB	3.4 GB	9.8 GB	6.6 GB
+48	86/c3e165	2802920	insertsize (Lung_M2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:44:31.199	53.6s	50.7s	100.5%	9 MB	24.4 MB	3.5 GB	3.1 GB
+27	f9/3eb689	2788277	bowtie_miRBase_mature (Lung_F2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:42:34.561	2m 51s	2m 48s	454.7%	25.2 MB	12.4 GB	4.6 GB	3.4 GB
+26	02/d6174f	2777387	collapse (Lung_F2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:41:20.445	4m 14s	4m 12s	99.6%	964.4 MB	5.9 GB	247 MB	101.1 MB
+34	9f/c9c28a	2808507	bowtie_miRBase_mature (Lung_F3_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:45:34.546	3m 11s	3m 9s	459.2%	24.7 MB	12.4 GB	5.7 GB	4.2 GB
+32	8e/a821be	2807073	collapse (Lung_F3_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:45:25.375	3m 41s	3m 39s	100.8%	526.2 MB	5.5 GB	250.2 MB	47.7 MB
+36	e0/f8ed44	2816756	bowtie_miRBase_mature (Lung_F1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:48:45.599	3m 23s	3m 21s	441.7%	25.1 MB	12.4 GB	5.4 GB	4.1 GB
+37	87/0145d7	2819442	collapse (Lung_F1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:49:06.738	5m 10s	5m 8s	100.3%	1.1 GB	6 GB	299.4 MB	111.2 MB
+41	f7/9ba09a	2826497	bowtie_miRBase_mature (Lung_M1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:52:08.823	3m 33s	3m 31s	449.6%	25.2 MB	12.4 GB	7.9 GB	5.7 GB
+46	f6/9a7a9f	2836607	bowtie_miRBase_mature (Lung_M2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:55:42.247	4m 3s	4m	448.9%	25 MB	12.4 GB	8.9 GB	6.4 GB
+43	4a/db6133	2832983	collapse (Lung_M1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:54:17.096	5m 28s	5m 26s	100.6%	633.8 MB	5.6 GB	339.1 MB	61.2 MB
+51	db/4ea27a	2846303	bowtie_miRBase_hairpin (Lung_F2_*.mature_unmapped.fq.gz)	COMPLETED	0	2022-05-10 08:59:45.314	2m 3s	2m 1s	434.8%	26.5 MB	12.4 GB	3 GB	2.3 GB
+52	1f/dfce47	2853452	mirna_post_alignment (Lung_F2_*.mature.bam)	COMPLETED	0	2022-05-10 09:01:48.244	1m 1s	58.4s	95.3%	1011.1 MB	1.1 GB	1.1 GB	408.4 MB
+53	11/02924f	2856070	bowtie_miRBase_hairpin_collapsed (Lung_F2_*.fastq)	COMPLETED	0	2022-05-10 09:02:48.915	13.4s	11.2s	595.8%	26.5 MB	12.4 GB	238.7 MB	159 MB
+54	af/2ce950	2858439	bowtie_miRBase_hairpin (Lung_F3_*.mature_unmapped.fq.gz)	COMPLETED	0	2022-05-10 09:03:02.332	2m 51s	2m 49s	462.8%	25.2 MB	12.4 GB	4.9 GB	3.6 GB
+47	ee/f1d7f8	2846276	collapse (Lung_M2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 08:59:44.910	6m 28s	6m 26s	100.3%	838.1 MB	5.8 GB	386.4 MB	83.9 MB
+56	ef/26970e	2867586	bowtie_miRBase_hairpin_collapsed (Lung_F3_*.fastq)	COMPLETED	0	2022-05-10 09:06:12.965	7.2s	5s	580.3%	25.6 MB	12.4 GB	117.4 MB	75.8 MB
+55	02/00d55a	2865851	mirna_post_alignment (Lung_F3_*.mature.bam)	COMPLETED	0	2022-05-10 09:05:53.351	1m 2s	1m	94.0%	1014.3 MB	1.1 GB	1 GB	394.3 MB
+58	a0/d2972b	2869188	mirna_post_alignment (Lung_F1_*.mature.bam)	COMPLETED	0	2022-05-10 09:06:20.203	1m 18s	1m 15s	94.9%	1010.4 MB	1.1 GB	1.3 GB	542.5 MB
+59	f4/abf2e7	2874706	bowtie_miRBase_hairpin_collapsed (Lung_F1_*.fastq)	COMPLETED	0	2022-05-10 09:07:37.902	15.7s	13.2s	553.2%	26.2 MB	12.4 GB	260.1 MB	174.6 MB
+61	ff/bf424d	2877439	mirna_post_alignment (Lung_M1_*.mature.bam)	COMPLETED	0	2022-05-10 09:07:53.560	1m 36s	1m 34s	95.9%	1012.5 MB	1.1 GB	1.5 GB	598.7 MB
+57	ca/066ab1	2871252	bowtie_miRBase_hairpin (Lung_F1_*.mature_unmapped.fq.gz)	COMPLETED	0	2022-05-10 09:06:55.658	2m 36s	2m 34s	429.2%	25.9 MB	12.4 GB	3.7 GB	2.9 GB
+63	55/45fb89	2882541	mirna_post_alignment (Lung_M2_*.mature.bam)	COMPLETED	0	2022-05-10 09:09:32.155	1m 57s	1m 54s	93.1%	1012.9 MB	1.1 GB	1.8 GB	708.6 MB
+60	c5/46bfdb	2881524	bowtie_miRBase_hairpin (Lung_M1_*.mature_unmapped.fq.gz)	COMPLETED	0	2022-05-10 09:09:29.389	2m 53s	2m 51s	425.5%	25.9 MB	12.4 GB	5.4 GB	4 GB
+64	f7/106c21	2892815	bowtie_miRBase_hairpin_collapsed (Lung_M1_*.fastq)	COMPLETED	0	2022-05-10 09:12:22.576	9.1s	6.5s	581.3%	26.9 MB	12.4 GB	147.6 MB	95.9 MB
+65	a3/876c4d	2894757	mirna_post_alignment (Lung_F2_*.hairpin.bam)	COMPLETED	0	2022-05-10 09:12:31.695	44.1s	41.7s	94.4%	1005.5 MB	1.1 GB	761.5 MB	302.2 MB
+66	ba/19cbe1	2897611	mirna_post_alignment (Lung_F3_*.hairpin.bam)	COMPLETED	0	2022-05-10 09:13:15.800	54.8s	52.2s	95.0%	1012.6 MB	1.1 GB	898.4 MB	365.7 MB
+67	e2/aa3287	2900502	bowtie_miRBase_hairpin_collapsed (Lung_M2_*.fastq)	COMPLETED	0	2022-05-10 09:14:10.570	11.2s	8.8s	587.0%	26.8 MB	12.4 GB	199.2 MB	131.5 MB
+62	ee/56f9c1	2889009	bowtie_miRBase_hairpin (Lung_M2_*.mature_unmapped.fq.gz)	COMPLETED	0	2022-05-10 09:11:28.695	3m 17s	3m 14s	430.4%	26 MB	12.4 GB	6.1 GB	4.6 GB
+68	74/0e5e8d	2902554	mirna_post_alignment (Lung_F1_*.hairpin.bam)	COMPLETED	0	2022-05-10 09:14:21.727	49.4s	47.1s	94.2%	1005.5 MB	1.1 GB	969.1 MB	362 MB
+69	e0/f40803	2904392	mirna_post_alignment (Lung_M1_*.hairpin.bam)	COMPLETED	0	2022-05-10 09:14:45.428	1m 1s	58.8s	94.8%	986.6 MB	1.1 GB	1 GB	430.6 MB
+71	20/109e71	2908569	mirna_post_alignment (Lung_M2_*.hairpin.bam)	COMPLETED	0	2022-05-10 09:15:46.508	1m 8s	1m 6s	95.0%	973 MB	1.1 GB	1.2 GB	473 MB
+72	f8/1556f3	2911391	edgeR_mirna	COMPLETED	0	2022-05-10 09:16:55.333	6.2s	3.8s	204.6%	150.8 MB	5.5 GB	11.5 MB	2.9 MB
+70	4c/4eb5d4	2906239	mirtop_bam_hairpin ([Lung_M3_*.bam, Lung_F2_*.bam, Lung_F3_*.bam, Lung_F1_*.bam, Lung_M1_*.bam, Lung_M2_*.bam])	COMPLETED	0	2022-05-10 09:15:11.119	2m 7s	2m 4s	107.6%	371.7 MB	6.2 GB	410.3 MB	243.4 MB
+19	b7/67cc6c	2913018	bowtie_ref (Lung_M3_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 09:17:17.968	2m 58s	2m 56s	1214.0%	2.1 GB	26.8 GB	16.9 GB	12.4 GB
+28	0d/226714	2919484	bowtie_ref (Lung_F2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 09:20:16.321	2m 49s	2m 47s	1137.0%	2.1 GB	26.8 GB	12.8 GB	10 GB
+73	10/5a653d	2919842	genome_post_alignment (Lung_M3_*.genome.bam)	COMPLETED	0	2022-05-10 09:20:17.329	5m 13s	5m 10s	97.3%	997.9 MB	1.1 GB	4.3 GB	1.7 GB
+74	df/757872	2928767	genome_post_alignment (Lung_F2_*.genome.bam)	COMPLETED	0	2022-05-10 09:23:05.380	4m 25s	4m 22s	97.2%	989.2 MB	1.1 GB	3.7 GB	1.5 GB
+31	3d/1c7fe5	2928762	bowtie_ref (Lung_F3_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 09:23:05.374	5m 11s	5m 8s	1115.8%	2.1 GB	26.8 GB	21.2 GB	18.4 GB
+38	27/86a67e	2944276	bowtie_ref (Lung_F1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 09:28:16.618	2m 37s	2m 35s	1193.3%	2.1 GB	26.8 GB	11.8 GB	8.7 GB
+45	85/7e4add	2953189	bowtie_ref (Lung_M1_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 09:30:53.787	2m 21s	2m 18s	1196.4%	2.1 GB	26.8 GB	12.7 GB	8.7 GB
+76	e0/dc76f1	2953197	genome_post_alignment (Lung_F1_*.genome.bam)	COMPLETED	0	2022-05-10 09:30:53.798	4m 12s	4m 10s	96.6%	990.7 MB	1.1 GB	3.5 GB	1.4 GB
+75	ca/efe1b7	2944281	genome_post_alignment (Lung_F3_*.genome.bam)	COMPLETED	0	2022-05-10 09:28:16.626	7m 45s	7m 42s	96.2%	986.5 MB	1.1 GB	5.5 GB	2.3 GB
+50	f3/d8d645	2962807	bowtie_ref (Lung_M2_*_trimmed.fq.gz)	COMPLETED	0	2022-05-10 09:33:14.377	2m 48s	2m 44s	1211.0%	2.1 GB	26.8 GB	14.7 GB	10.5 GB
+79	9d/2c6ab6	2973886	bowtie_unmapped (Lung_F2_*.genome)	COMPLETED	0	2022-05-10 09:36:01.906	1m 24s	1m 21s	100.0%	6.5 MB	12.1 MB	5.9 GB	381 B
+77	31/07be50	2969934	genome_post_alignment (Lung_M1_*.genome.bam)	COMPLETED	0	2022-05-10 09:35:05.863	3m 28s	3m 25s	95.7%	999.2 MB	1.1 GB	3 GB	1.1 GB
+78	e9/6d9311	2973881	genome_post_alignment (Lung_M2_*.genome.bam)	COMPLETED	0	2022-05-10 09:36:01.899	3m 55s	3m 52s	95.8%	998.1 MB	1.1 GB	3.7 GB	1.4 GB
+80	6a/bbe32a	2981537	multiqc (1)	COMPLETED	0	2022-05-10 09:39:56.620	37.1s	34.5s	102.7%	134.4 MB	5.5 GB	626.5 MB	6.5 MB

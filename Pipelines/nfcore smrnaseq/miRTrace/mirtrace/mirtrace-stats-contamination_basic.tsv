@@ -1,0 +1,15 @@
+CLADE	Lung_M1_*	Lung_F1_*	Lung_F2_*	Lung_M2_*	Lung_F3_*	Lung_M3_*
+bryophytes	0	0	0	0	0	0
+lycopods	0	0	0	0	0	0
+gymnosperms	0	0	0	0	0	0
+monocots	0	0	0	0	0	0
+dicots	0	0	1	0	0	1
+sponges	0	0	0	0	0	0
+nematode	0	0	0	0	0	0
+insects	0	0	0	0	0	0
+lophotrochozoa	0	0	0	0	0	0
+echinoderms	0	0	0	0	0	0
+fish	0	0	0	0	0	0
+birds_reptiles	0	0	0	0	0	0
+rodents	49501	29330	36028	60035	25855	63507
+primates	0	0	0	0	0	0

@@ -1,0 +1,124 @@
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: Lung_M3_*.fastq
+Trimming mode: single-end
+Trim Galore version: 0.6.6
+Cutadapt version: 4.0
+Number of cores used for trimming: 1
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'TGGAATTCTCGGGTGCCAAGG' (user defined)
+Maximum trimming error rate: 0.1 (default)
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length before a sequence gets removed: 15 bp
+Maxiumum tolerated read length after trimming (for smallRNA trimming): 76 bp
+Running FastQC on the data once trimming has completed
+Output file will be GZIP compressed
+
+
+This is cutadapt 4.0 with Python 3.7.3
+Command line parameters: -j 1 -e 0.1 -q 20 -O 1 -a TGGAATTCTCGGGTGCCAAGG Lung_M3_*.fastq
+Processing single-end reads on 1 core ...
+Finished in 346.99 s (10 µs/read; 5.92 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:              34,230,890
+Reads with adapters:                23,628,535 (69.0%)
+Reads written (passing filters):    34,230,890 (100.0%)
+
+Total basepairs processed: 1,255,269,236 bp
+Quality-trimmed:                 943,291 bp (0.1%)
+Total written (filtered):  1,219,146,469 bp (97.1%)
+
+=== Adapter 1 ===
+
+Sequence: TGGAATTCTCGGGTGCCAAGG; Type: regular 3'; Length: 21; Trimmed: 23628535 times
+
+Minimum overlap: 1
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20-21 bp: 2
+
+Bases preceding removed adapters:
+  A: 4.2%
+  C: 49.6%
+  G: 31.3%
+  T: 14.9%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+1	17923325	8557722.5	0	17923325
+2	3184877	2139430.6	0	3184877
+3	91252	534857.7	0	91252
+4	2331757	133714.4	0	2331757
+5	69377	33428.6	0	69377
+6	2138	8357.2	0	2138
+7	1415	2089.3	0	1415
+8	446	522.3	0	446
+9	53	130.6	0	19 34
+10	2784	32.6	1	8 2776
+11	4485	8.2	1	0 4485
+12	1	2.0	1	0 1
+18	3	0.0	1	0 0 3
+19	1	0.0	1	0 0 1
+20	20	0.0	2	0 0 20
+21	37	0.0	2	0 0 37
+22	84	0.0	2	0 0 84
+23	155	0.0	2	0 0 155
+24	23	0.0	2	0 0 23
+25	7	0.0	2	0 0 7
+26	14	0.0	2	0 0 14
+27	27	0.0	2	0 0 27
+28	17	0.0	2	0 0 17
+29	11	0.0	2	0 0 11
+30	23	0.0	2	0 0 23
+31	20	0.0	2	0 0 20
+32	27	0.0	2	0 0 27
+33	57	0.0	2	0 0 57
+34	59	0.0	2	0 0 59
+35	112	0.0	2	0 0 112
+36	39	0.0	2	0 0 39
+37	76	0.0	2	0 0 76
+38	120	0.0	2	0 0 120
+39	235	0.0	2	0 0 235
+40	288	0.0	2	0 0 288
+41	304	0.0	2	0 0 304
+42	286	0.0	2	0 0 286
+43	166	0.0	2	0 0 166
+44	323	0.0	2	0 0 323
+45	284	0.0	2	0 0 284
+46	150	0.0	2	0 0 150
+47	183	0.0	2	0 0 183
+48	253	0.0	2	0 0 253
+49	153	0.0	2	0 0 153
+50	578	0.0	2	0 0 578
+51	2206	0.0	2	0 0 2206
+52	2007	0.0	2	0 0 2007
+53	4020	0.0	2	0 0 4020
+54	1760	0.0	2	0 0 1760
+55	2230	0.0	2	0 0 2230
+56	162	0.0	2	0 0 162
+57	31	0.0	2	0 0 31
+58	5	0.0	2	0 0 5
+59	10	0.0	2	0 0 10
+60	11	0.0	2	0 0 11
+61	3	0.0	2	0 0 3
+62	4	0.0	2	0 0 4
+63	3	0.0	2	0 0 3
+65	2	0.0	2	0 0 2
+67	1	0.0	2	0 0 1
+68	2	0.0	2	0 0 2
+69	2	0.0	2	0 0 2
+72	2	0.0	2	0 0 2
+73	5	0.0	2	0 0 5
+74	4	0.0	2	0 0 4
+75	20	0.0	2	0 0 20
+
+RUN STATISTICS FOR INPUT FILE: Lung_M3_*.fastq
+=============================================
+34230890 sequences processed in total
+Sequences removed because they became shorter than the length cutoff of 15 bp:	10543 (0.0%)
+Sequences removed because after trimming they were longer than the maximum length cutoff of 76 bp:	0 (0.0%)
+

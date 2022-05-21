@@ -1,0 +1,66 @@
+----------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~\
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/smrnaseq v1.1.0
+----------------------------------------------------
+
+Run Name: hungry_kalam
+
+## nf-core/smrnaseq execution completed successfully! ##
+
+
+The workflow was completed at 2022-05-10T09:40:33.725Z (duration: 1h 3m 16s)
+
+The command used to launch the workflow was as follows:
+
+  nextflow run nf-core/smrnaseq -profile conda --input '/home/tfm20212-01/Samples/Trimmed/*_*fastq' --genome mm10 --fasta /home/tfm20212-01/Genome/mm10.fa --mirna_gtf /home/tfm20212-01/Databases/mmu.gff3 --mature /home/tfm20212-01/Databases/mature.fa --hairpin /home/tfm20212-01/Databases/hairpin.fa --bt_index /home/tfm20212-01/Genome/mm10 --min_length 15 --three_prime_adapter TGGAATTCTCGG --trim_galore_max_length 76 --skip_mirdeep -resume --outdir /home/tfm20212-01/Results/nextflow/
+
+
+
+Pipeline Configuration:
+-----------------------
+ - Pipeline Release: master
+ - Run Name: hungry_kalam
+ - Input: /home/tfm20212-01/Samples/Trimmed/*_*fastq
+ - Genome: mm10
+ - Min Trimmed Length: 15
+ - Trim 5' R1: 0
+ - Trim 3' R1: 0
+ - miRBase mature: /home/tfm20212-01/Databases/mature.fa
+ - miRBase hairpin: /home/tfm20212-01/Databases/hairpin.fa
+ - Reference Genome: /home/tfm20212-01/Genome/mm10.fa
+ - Bowtie Index for Ref: /home/tfm20212-01/Genome/mm10
+ - Save Reference: Yes
+ - Protocol: illumina
+ - Mirtrace Protocol: illumina
+ - miRTrace species: mmu
+ - 3' adapter: TGGAATTCTCGGGTGCCAAGG
+ - Output dir: /home/tfm20212-01/Results/nextflow/
+ - Launch dir: /home/tfm20212-01
+ - Working dir: /home/tfm20212-01/work
+ - Current home: /home/tfm20212-01
+ - Current user: tfm20212-01
+ - Current path: /home/tfm20212-01
+ - Script dir: /home/tfm20212-01/.nextflow/assets/nf-core/smrnaseq
+ - Config Profile: conda
+ - Fasta Ref: /home/tfm20212-01/Genome/mm10.fa
+ - Max Resources: 128 GB memory, 16 cpus, 10d time per job
+ - User: tfm20212-01
+ - Config Files: /home/tfm20212-01/.nextflow/assets/nf-core/smrnaseq/nextflow.config
+ - Date Started: 2022-05-10T08:37:17.796Z
+ - Date Completed: 2022-05-10T09:40:33.725Z
+ - Pipeline script file path: /home/tfm20212-01/.nextflow/assets/nf-core/smrnaseq/main.nf
+ - Pipeline script hash ID: 33661065c199ca61925ffad7890dc67c
+ - Pipeline repository Git URL: https://github.com/nf-core/smrnaseq
+ - Pipeline repository Git Commit: 03333bfa17adc8d829a400012ed9f13c5abf4cc3
+ - Pipeline Git branch/tag: master
+ - Nextflow Version: 21.10.6
+ - Nextflow Build: 5660
+ - Nextflow Compile Timestamp: 21-12-2021 16:55 UTC
+
+--
+nf-core/smrnaseq
+https://github.com/nf-core/smrnaseq

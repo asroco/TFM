@@ -1,0 +1,7 @@
+Sample	Reads passing filters
+Lung_F1_*	20739536.0
+Lung_F2_*	17931049.0
+Lung_F3_*	20137854.0
+Lung_M1_*	25479710.0
+Lung_M2_*	28669675.0
+Lung_M3_*	34230890.0

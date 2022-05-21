@@ -1,0 +1,2 @@
+Lung_M2_*.hairpin	Lung_M3_*.hairpin	Lung_F1_*.hairpin	Lung_F2_*.hairpin	Lung_F3_*.hairpin	Lung_M1_*.hairpin
+*	12490996	14242599	9577987	7710642	14812008	10708157

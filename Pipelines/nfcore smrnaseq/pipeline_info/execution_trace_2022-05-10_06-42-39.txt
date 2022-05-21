@@ -1,0 +1,4 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+6	1a/a7034a	2192418	output_documentation	CACHED	0	2022-05-09 19:43:21.998	3.7s	405ms	86.2%	18.7 MB	25.6 MB	3.9 MB	799.3 KB
+2	07/40212a	2186260	make_bowtie_index	CACHED	0	2022-05-09 19:43:16.355	5.6s	2.1s	112.2%	99.4 MB	897.3 MB	14.1 MB	18.7 MB
+3	20/9813aa	2198270	fastqc (Lung_F1_*.fastq)	CACHED	0	2022-05-09 19:43:27.265	59.3s	56.5s	109.2%	405.1 MB	3.5 GB	1.9 GB	2.5 MB
