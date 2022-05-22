@@ -1,0 +1,7 @@
+Sample	FastQC_mqc-generalstats-fastqc-percent_duplicates	FastQC_mqc-generalstats-fastqc-percent_gc	FastQC_mqc-generalstats-fastqc-avg_sequence_length	FastQC_mqc-generalstats-fastqc-percent_fails	FastQC_mqc-generalstats-fastqc-total_sequences
+Lung_F1	90.52199538392387	47.0	75.0	50.0	20821100.0
+Lung_F2	90.03177958614727	50.0	75.0	50.0	18028815.0
+Lung_F3	94.61580559789356	52.0	75.0	50.0	20189824.0
+Lung_M1	95.59405014806087	49.0	75.0	50.0	25545228.0
+Lung_M2	94.43777091923114	51.0	75.0	50.0	28758079.0
+Lung_M3	94.27548862360118	48.0	75.0	50.0	34333318.0
