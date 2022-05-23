@@ -110,7 +110,7 @@ cd ..
 # Análisis con miRge3.0
 cd
 cd Samples/Trimmed
-miRge3.0 -s ./Lung_F1.fastq,Lung_F2.fastq,Lung_F3.fastq,Lung_M1.fastq,Lung_M2.fastq,Lung_M3.fastq -lib /home/tfm20212-01/Software/miRge3.0/miRge3_Lib -on mouse -db miRBase -o /home/tfm20212-01/Results/miRge3.0/ -gff -bam -ie -nmir -ai -a illumina -pbwt /home/tfm20212-01/Software/Bowtie/bowtie-1.3.0-linux-x86_64 -pr /home/tfm20212-01/Software/ViennaRNA/bin
+miRge3.0 -s ./Lung_F1.fastq,Lung_F2.fastq,Lung_F3.fastq,Lung_M1.fastq,Lung_M2.fastq,Lung_M3.fastq -lib /home/tfm20212-01/Software/miRge3.0/miRge3_Lib -on mouse -db miRBase -o /home/tfm20212-01/Results/miRge3.0/ -gff -bam -nmir -ai -a illumina -pbwt /home/tfm20212-01/Software/Bowtie/bowtie-1.3.0-linux-x86_64 -pr /home/tfm20212-01/Software/ViennaRNA/bin
 
 
 # Instalación de JAVA
