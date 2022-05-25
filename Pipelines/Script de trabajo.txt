@@ -110,7 +110,7 @@ cd ..
 # Análisis con miRge3.0
 cd
 cd Samples/Trimmed
-miRge3.0 -s ./Lung_F1.fastq,Lung_F2.fastq,Lung_F3.fastq,Lung_M1.fastq,Lung_M2.fastq,Lung_M3.fastq -lib /home/tfm20212-01/Software/miRge3.0/miRge3_Lib -on mouse -db miRBase -o /home/tfm20212-01/Results/miRge3.0/ -gff -bam -nmir -ai -a illumina -pbwt /home/tfm20212-01/Software/Bowtie/bowtie-1.3.0-linux-x86_64 -pr /home/tfm20212-01/Software/ViennaRNA/bin
+miRge3.0 -s ./Lung_F1.fastq,Lung_F2.fastq,Lung_F3.fastq,Lung_M1.fastq,Lung_M2.fastq,Lung_M3.fastq -lib /home/tfm20212-01/Software/miRge3.0/miRge3_Lib -on mouse -db miRBase -o /home/tfm20212-01/Results/miRge3.0/ -gff -bam -nmir -ai -pbwt /home/tfm20212-01/Software/Bowtie/bowtie-1.3.0-linux-x86_64 -pr /home/tfm20212-01/Software/ViennaRNA/bin
 
 
 # Instalación de JAVA
@@ -134,7 +134,7 @@ java -jar COMPSRA.jar -tk -dr -ck star
 # Instalar el genoma de referencia para ratón GRC38/mm10
 java -jar COMPSRA.jar -tk -dr -ck star_mm10
 # Análisis con COMPSRA. No incluye análisis de piRNAs
-java -jar COMPSRA.jar -ref mm10 -qc -ra TGGAATTCTCGG -rh 20 -rt 20 -rr 20 -rlh 15 -aln -mt star -ann -ac 1,3,4,5,6 -inf /home/tfm20212-01/Software/COMPSRA/sample.list -out /home/tfm20212-01/Results/COMPSRA/
+java -jar COMPSRA.jar -ref mm10 -qc -ra TGGAATTCTCGG -rh 20 -rt 20 -rr 20 -rlh 15 -aln -mt star -ann -ac 1,3,4,5,6 -fun -fdclass 1,3,4,5,6 -inf /home/tfm20212-01/Software/COMPSRA/sample.list -out /home/tfm20212-01/Results/COMPSRA/
 # Fichero de read counts de miRNAs. Los ficheros read counts de miRNAs de cada muestra se mueven a un directorio, se renombran y se crea una lista con sus nombres.
 java -jar COMPSRA.jar -tk -Merge -id 1 -count 3 -inf home/tfm20212-01/Software/COMPSRA/Lung_miRNAslist.txt -out /home/tfm20212-01/Software/COMPSRA/Lung_miRNAcounts.txt
 
